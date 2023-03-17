@@ -5,6 +5,7 @@ import me.dio.academia.digital.dto.AvaliacaoFisicaResponseDTO;
 import me.dio.academia.digital.dto.mapper.AvaliacaoFisicaResponseMapper;
 import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.entity.AvaliacaoFisica;
+import me.dio.academia.digital.exception.BusinessException;
 import me.dio.academia.digital.repository.AlunoRepository;
 import me.dio.academia.digital.repository.AvaliacaoFisicaRepository;
 import me.dio.academia.digital.service.AvaliacaoFisicaService;
@@ -29,7 +30,7 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
     @Override
     public AvaliacaoFisica create(AvaliacaoFisicaRequestDTO request) {
         AvaliacaoFisica avaliacaoFisica = new AvaliacaoFisica();
-        Aluno aluno = alunoRepository.findById(request.getAlunoId()).orElseThrow();
+        Aluno aluno = alunoRepository.findById(request.getAlunoId()).orElseThrow(() -> new BusinessException(request.getAlunoId()));
 
         avaliacaoFisica.setAluno(aluno);
         avaliacaoFisica.setPeso(request.getPeso());

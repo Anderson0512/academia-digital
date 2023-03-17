@@ -1,9 +1,8 @@
 package me.dio.academia.digital.controller;
-import jakarta.validation.Valid;
+
 import me.dio.academia.digital.dto.AlunoRequestDTO;
 import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.entity.AvaliacaoFisica;
-import me.dio.academia.digital.repository.AlunoRepository;
 import me.dio.academia.digital.service.impl.AlunoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +42,16 @@ public class AlunoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) throws Exception {
         service.delete(id);
         return ResponseEntity.ok().body("Arquivo Deletado");
+    }
+    @GetMapping("/{id}")
+    public Aluno getAluno(@PathVariable Long id) throws Exception {
+        return service.get(id);
+    }
+    @PutMapping("/{id}")
+    public Aluno getUpdate(@PathVariable Long id, @RequestBody AlunoRequestDTO request) throws Exception {
+        return service.update(id,request);
     }
 }

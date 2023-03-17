@@ -13,7 +13,7 @@ public interface AvaliacaoFisicaService {
      * @param form - formulário referente aos dados para criação da Avaliação Física no banco de dados.
      * @return - Avaliação Física recém-criada.
      */
-    AvaliacaoFisica create(AvaliacaoFisicaRequestDTO form);
+    AvaliacaoFisica create(AvaliacaoFisicaRequestDTO form) throws Exception;
 
     /**
      * Retorna uma Avaliação Física que está no banco de dados de acordo com seu Id.
